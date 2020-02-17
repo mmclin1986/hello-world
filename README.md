@@ -1,7 +1,14 @@
 # hello-world
 Just Another Repository
 
-Hello World Fans 
+<?php
+require_once './vendor/autoload.php';
+use Twilio\TwiML;
 
+$city = $_REQUEST['FromCity'] ?? 'Guayaquil';
 
-I am Michelle. I am the TSE for the Voice Team. I am based in Denver Colorado. I have built an app in the pass. This is my second time.  
+$response = new TwiML();
+$response->say("Never gonna give you up, {$city}!", array('voice' => 'alice'));
+$response->play("https://demo.twilio.com/docs/classic.mp3");
+
+echo $response;
